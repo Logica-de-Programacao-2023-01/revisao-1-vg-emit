@@ -36,6 +36,6 @@ func sum(numeros []float64) float64 {
 }
 
 func main() {
-	discount, err := CalculateDiscount(80, []float64{0})
+	discount, err := CalculateDiscount(80, []float64{100,300,400})
 	fmt.Printf("Q1:\tdiscount: %f,\terr: %v\n", discount, err)
 }
