@@ -15,7 +15,7 @@ func CalculateDiscount(currentPurchase float64, purchaseHistory []float64) (floa
 		return currentPurchase * 0.2, nil
 	} else if currentPurchase+sum(purchaseHistory) > 1000 {
 		return currentPurchase * 0.1, nil
-	} else if currentPurchase+sum(purchaseHistory) < 100 {
+	} else if currentPurchase+sum(purchaseHistory) < 1000{
 		return currentPurchase * 0.05, nil
 	} else if currentPurchase <= 500 {
 		return currentPurchase * 0.02, nil
