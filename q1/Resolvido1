@@ -15,14 +15,12 @@ func CalculateDiscount(currentPurchase float64, purchaseHistory []float64) (floa
 		return currentPurchase * 0.2, nil
 	} else if currentPurchase+sum(purchaseHistory) > 1000 {
 		return currentPurchase * 0.1, nil
-	} else if currentPurchase+sum(purchaseHistory) < 1000 {
+	} else if currentPurchase+sum(purchaseHistory) <= 1000 {
 		return currentPurchase * 0.05, nil
 	} else if len(purchaseHistory) == 0 {
 		return currentPurchase * 0.1, nil
-	} else if currentPurchase <= 500 {
+	} else if currentPurchase+sum(purchaseHistory) <= 500 {
 		return currentPurchase * 0.02, nil
-	} else if media > 1000 {
-		return currentPurchase * 0.2, nil
 	}
 	return currentPurchase, nil
 }
@@ -36,6 +34,6 @@ func sum(numeros []float64) float64 {
 }
 
 func main() {
-	discount, err := CalculateDiscount(80, []float64{100,300,400})
+	discount, err := CalculateDiscount(1600, []float64{100, 160, 300, 2, 5})
 	fmt.Printf("Q1:\tdiscount: %f,\terr: %v\n", discount, err)
 }
