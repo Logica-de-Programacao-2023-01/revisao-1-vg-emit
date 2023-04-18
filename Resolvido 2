@@ -1,0 +1,26 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func AverageLettersPerWord(text string) (float64, error) {
+	plv := strings.Fields(text)
+	Nuplv := len(plv)
+	if Nuplv == 0 {
+		return 0, fmt.Errorf("Seu texto não tem palavras")
+	}
+
+	NumLet := 0
+	for _, plv := range plv {
+		NumLet += len(plv)
+	}
+
+	return float64(NumLet) / float64(Nuplv), nil
+}
+
+func main() {
+	averageLettersPerWord, err := AverageLettersPerWord("Eu , fui ao mercado")
+	fmt.Printf("Q2:\taverageLettersPerWord: %f,\terr: %v\n", averageLettersPerWord, err)
+}
