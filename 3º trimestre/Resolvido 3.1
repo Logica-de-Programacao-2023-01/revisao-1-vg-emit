@@ -1,0 +1,63 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+	"sort"
+)
+
+func FindMinMaxAverage(numbers []int) (int, int, float64, error) {
+	if len(numbers) == 0 {
+		return 0, 0, 0, errors.New("Lista vazia")
+	}
+	sort.Ints(numbers)
+
+	sum := 0
+	for i := 1; i <= len(numbers)-1; i++ {
+		sum += numbers[i]
+	}
+	média := float64(sum) / float64(len(numbers)-2)
+
+	return numbers[0], numbers[len(numbers)-1], média, nil
+}
+
+func main() {
+
+	min, max, media, err := FindMinMaxAverage([]int{1,2,3,4,52,3})
+	fmt.Printf("Q3:\tmin: %d,\tmax: %d,\tavg: %f,\terr: %v\n", min, max, media, err)
+}
+
+
+=========================================================================================================================================
+package main
+
+import "fmt"
+
+func FindMinMaxAverage(numbers []int) (int, int, float64, error) {
+	if len(numbers) == 0 {
+		return 0, 0, 0, nil
+	}
+	max := numbers[0]
+	min := numbers[0]
+	soma := 0
+	for _, num := range numbers {
+		if num > max {
+			max = num
+		}
+		if num < min {
+			min = num
+		}
+		soma += num
+	}
+	soma -= max + min
+	n := len(numbers) - 2
+	media := float64(soma) / float64(n)
+	return max, min, media, nil
+
+}
+func main() {
+
+	min, max, media, err := FindMinMaxAverage([]int{2, 2, 2, 2, 2})
+	fmt.Printf("Q3:\tmax: %d,\tmin: %d,\tmedia: %f,\terr: %v\n", min, max, media, err)
+
+}
