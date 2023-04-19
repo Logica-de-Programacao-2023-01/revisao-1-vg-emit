@@ -1,0 +1,76 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func CalculateFinalPrice(basePrice float64, state string, taxCode int) (float64, error) {
+	var precofinal float64
+	if taxCode == 0 {
+		return 0, errors.New("Codigo de imposto não existe")
+	} else if basePrice <= 0 {
+		return 0, errors.New("preço base inválido")
+	}
+	if state == "SP" && taxCode == 1 {
+		precofinal = basePrice + basePrice*0.05 + basePrice*0.1
+		fmt.Println(precofinal)
+	} else if state == "SP" && taxCode == 2 {
+		precofinal = basePrice + basePrice*0.1 + basePrice*0.1
+		fmt.Println(precofinal)
+
+	} else if state == "SP" && taxCode == 3 {
+		precofinal = basePrice + basePrice*0.15 + basePrice*0.1
+		fmt.Println(precofinal)
+	}
+	if state == "RJ" && taxCode == 1 {
+		precofinal = basePrice + basePrice*0.05 + basePrice*0.15
+		fmt.Println(precofinal)
+	} else if state == "RJ" && taxCode == 2 {
+		precofinal = basePrice + basePrice*0.1 + basePrice*0.15
+		fmt.Println(precofinal)
+
+	} else if state == "RJ" && taxCode == 3 {
+		precofinal = basePrice + basePrice*0.15 + basePrice*0.15
+		fmt.Println(precofinal)
+	}
+	if state == "ES" && taxCode == 1 {
+		precofinal = basePrice + basePrice*0.05 + basePrice*0.25
+		fmt.Println(precofinal)
+	} else if state == "ES" && taxCode == 2 {
+		precofinal = basePrice + basePrice*0.1 + basePrice*0.25
+		fmt.Println(precofinal)
+
+	} else if state == "ES" && taxCode == 3 {
+		precofinal = basePrice + basePrice*0.15 + basePrice*0.25
+		fmt.Println(precofinal)
+	}
+	if state == "MG" && taxCode == 1 {
+		precofinal = basePrice + basePrice*0.05 + basePrice*0.2
+		fmt.Println(precofinal)
+	} else if state == "MG" && taxCode == 2 {
+		precofinal = basePrice + basePrice*0.1 + basePrice*0.2
+		fmt.Println(precofinal)
+
+	} else if state == "MG" && taxCode == 3 {
+		precofinal = basePrice + basePrice*0.15 + basePrice*0.2
+		fmt.Println(precofinal)
+	}
+	if state == "OUTRO" && taxCode == 1 {
+		precofinal = basePrice + basePrice*0.05 + basePrice*0.3
+		fmt.Println(precofinal)
+	} else if state == "OUTRO" && taxCode == 2 {
+		precofinal = basePrice + basePrice*0.1 + basePrice*0.3
+		fmt.Println(precofinal)
+
+	} else if state == "OUTRO" && taxCode == 3 {
+		precofinal = basePrice + basePrice*0.15 + basePrice*0.3
+		fmt.Println(precofinal)
+	}
+	return precofinal, nil
+}
+
+func main() {
+	price, err := CalculateFinalPrice(100, "OUTRO", 2)
+	fmt.Printf("Q4:\tprice: %f,\terr: %v\n", price, err)
+}
