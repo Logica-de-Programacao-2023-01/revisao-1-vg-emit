@@ -1,0 +1,41 @@
+package main
+
+import "fmt"
+
+func ConvertTemperature(temp float64, fromScale string, toScale string) (float64, error) {
+
+	switch fromScale {
+
+	case "C":
+		var C float64 = temp
+		if toScale == "F" {
+			return C*9/5 + 32, nil
+		} else if toScale == "K" {
+			return C + 273.15, nil
+		}
+	case "F":
+		var F float64 = temp
+		if toScale == "C" {
+			return (F - 32) * 5 / 9, nil
+		}
+		if toScale == "K" {
+			return (F-32)*5/9 + 273.15, nil
+		}
+	case "K":
+		var K float64 = temp
+
+		if toScale == "C" {
+			return K - 273.15, nil
+		}
+		if toScale == "F" {
+			return (K-273.15)*9/5 + 32, nil
+		}
+	default:
+		return 0, fmt.Errorf("escala inválida")
+	}
+	return temp, nil
+}
+func main() {
+	temperatura, err := ConvertTemperature(0, "C", "K")
+	fmt.Printf("Q5:\t temperatura: %f,\terrar: %v\n", temperatura, err)
+}
